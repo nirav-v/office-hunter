@@ -49,11 +49,12 @@ new Promise((resolve, reject) => {
     ]);
   })
   .then((answers) => {
-    // if the answer is to show all the departments, then a mysql query is made to
+    // if the answer is to show all the departments, then a mysql query is made to show the departments table
     if (answers.action === "View all departments") {
     console.log("show departments");
     db.query("SELECT * FROM department", function (err, results) {
-      console.log(results);
+    //   console.log(results);
+      console.table(results)
     
     });
     }
