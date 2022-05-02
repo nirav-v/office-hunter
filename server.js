@@ -28,17 +28,3 @@ new Promise((resolve, reject) => {
     // return promise to continue chaining
     return askAction();
   })
-  .then((answers) => {
-    // if the answer is to show all the departments, then a mysql query is made to show the departments table
-    if (answers.action === "View all departments") {
-      return viewDepartments();
-    }
-    if (answers.action === "View all roles") {
-      return viewRoles();
-    }
-  })
-  .then((answers) => {
-      askAction(answers)
-  })
-
-
