@@ -9,6 +9,11 @@ SELECT * FROM department;
     ON role.department_id = department.id;
 
 -- example query for showing all employees, 
+SELECT employee.id, employee.first_name, employee.last_name, concat(manager.first_name, " ", manager.last_name) AS manager
+FROM employee as employee
+LEFT JOIN employee as manager
+ON employee.manager_id = manager.id;
+
 
 SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee.manager_id
 FROM employee 
