@@ -3,18 +3,9 @@ const inquirer = require("inquirer");
 //const fs = require("fs").promises;
 const mysql = require("mysql2");
 const cTable = require("console.table");
-const queries = require("./db/queries");
+const queries = require("./lib/queries");
 
-// conect to the mysql database
-// Connect to database
-const db = mysql.createConnection({
-  host: "localhost",
-  // MySQL username,
-  user: "root",
-  // TODO: Add MySQL password here
-  password: "mysql123",
-  database: "company_db",
-});
+askAction = require("./lib/inquire");
 
 // TO make the command line intro display with figlet
 new Promise((resolve, reject) => {
@@ -35,28 +26,17 @@ new Promise((resolve, reject) => {
   // chain on the inquirer prompts
   .then(() => {
     // return promise to continue chaining
-    return inquirer.prompt([
-      {
-        name: "action",
-        type: "list",
-        message: "What would you like to do?",
-        choices: [
-          "View all employees",
-          "View all departments",
-          "Add Employee",
-          "Update Employee Role",
-        ],
-      },
-    ]);
+    return askAction();
   })
   .then((answers) => {
     // if the answer is to show all the departments, then a mysql query is made to show the departments table
     if (answers.action === "View all departments") {
-      db.query("SELECT * FROM department", function (err, results) {
-        console.table(results);
-      });
+      return viewDepartments();
     }
-    // else if 
+    if (answers.action === "View all roles") {
+      return viewRoles();
+    }
+    return askAction()
+  })
 
-  });
   
