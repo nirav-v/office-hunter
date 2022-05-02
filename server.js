@@ -36,7 +36,9 @@ new Promise((resolve, reject) => {
     if (answers.action === "View all roles") {
       return viewRoles();
     }
-    return askAction()
+  })
+  .then((answers) => {
+      askAction(answers)
   })
 
-  
+
