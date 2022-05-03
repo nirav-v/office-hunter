@@ -30,3 +30,11 @@ INSERT INTO department (department_name)
 VALUES ("Finance");
 
 SELECT * FROM department;
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Lead Chemist", 95000, 3);
+
+SELECT * FROM role;
+
+SELECT (department_name) from department;
+
