@@ -15,13 +15,17 @@ LEFT JOIN employee as manager
 ON employee.manager_id = manager.id;
 
 
-SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department_name, employee.manager_id
+SELECT employee.id, employee.first_name, employee.last_name, role.title, department.department_name AS department, role.salary, concat(manager.first_name, " ", manager.last_name) AS manager
 FROM employee 
 JOIN role 
 ON employee.role_id = role.id
 JOIN department 
-ON role.department_id = department.id;
+ON role.department_id = department.id
+LEFT JOIN employee as manager
+ON employee.manager_id = manager.id;
+
 
 -- -- example query to add a department 
 -- INSERT INTO department (department_name)
 -- VALUES (answers.department)
+
