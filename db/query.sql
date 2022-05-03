@@ -38,3 +38,8 @@ SELECT * FROM role;
 
 SELECT (department_name) from department;
 
+UPDATE employee 
+SET role_id = "3"
+WHERE id = 5;
+
+SELECT * FROM employee;
